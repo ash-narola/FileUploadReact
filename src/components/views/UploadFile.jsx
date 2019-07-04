@@ -16,21 +16,27 @@ export default class UploadFile extends Component {
 
     let formData = new FormData();
     formData.append('file', this.state.file);
-    fetch(' https://stunning-grand-teton-61463.herokuapp.com/v1/users.json', { // Your POST endpoint
+    fetch('https://stunning-grand-teton-61463.herokuapp.com/v1/users.json', { // Your POST endpoint
       method: 'POST',
       body: formData // This is your file object
     }).then(
       response => response.json() // if the response is a JSON object
     ).then((success) =>{
         console.log(success) // Handle the success response object,
-        this.setState({
-          fileUploadMessage : 'File uploaded sucessfully'
-        })
+        if(success.status === 400) {
+          this.setState({
+            fileUploadMessage : success.errors
+          })
+        }else if(success.status === 200){
+          this.setState({
+            fileUploadMessage : 'File uploaded successfully'
+          })
+        }
       }).catch((error) =>{ 
         this.setState({
-          fileUploadMessage : error
+          fileUploadMessage : error.errors
         })
-        console.log(error) 
+        // console.log(error.status) 
       }// Handle the error response object
     );
   }
