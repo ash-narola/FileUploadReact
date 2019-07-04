@@ -10,7 +10,7 @@ export default class Home extends Component {
   componentDidMount() {
     browserHistory.push('/');
     
-    let url = 'https://08777815.ngrok.io/v1/users.json';
+    let url = ' https://stunning-grand-teton-61463.herokuapp.com/v1/users.json';
     fetch(url).
     then(response => response.json()).then((repos) => {
         console.log(repos);

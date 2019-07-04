@@ -16,7 +16,7 @@ export default class UploadFile extends Component {
 
     let formData = new FormData();
     formData.append('file', this.state.file);
-    fetch('https://08777815.ngrok.io/v1/users.json', { // Your POST endpoint
+    fetch(' https://stunning-grand-teton-61463.herokuapp.com/v1/users.json', { // Your POST endpoint
       method: 'POST',
       body: formData // This is your file object
     }).then(
